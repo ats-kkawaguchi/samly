@@ -40,6 +40,8 @@ defmodule Samly.State.Session do
   end
 
   require Logger
+  import Plug.Conn
+  alias Plug.Conn
 
   @impl Samly.State.Store
   def put_assertion(conn, assertion_key, assertion, opts) do
