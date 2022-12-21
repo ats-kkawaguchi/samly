@@ -104,8 +104,8 @@ defmodule Samly.SPHandler do
     Logger.error("************")
 
     cond do
-      rs_in_session == nil || rs_in_session != relay_state ->
-        {:error, :invalid_relay_state}
+      # rs_in_session == nil || rs_in_session != relay_state ->
+      #   {:error, :invalid_relay_state}
 
       idp_id_in_session == nil || idp_id_in_session != idp_id ->
         {:error, :invalid_idp_id}
