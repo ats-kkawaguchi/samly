@@ -55,6 +55,11 @@ defmodule Samly.AuthHandler do
   end
 
   def send_signin_req(conn) do
+
+    Logger.error("####### AuthHandler#send_sign_req")
+    Logger.error("# AuthHandler#send_sign_req.relay_state = #{get_session(conn, "relay_state")}")
+
+
     %IdpData{id: idp_id} = idp = conn.private[:samly_idp]
     %IdpData{esaml_idp_rec: idp_rec, esaml_sp_rec: sp_rec} = idp
     sp = ensure_sp_uris_set(sp_rec, conn)
@@ -92,6 +97,10 @@ defmodule Samly.AuthHandler do
   end
 
   def send_signout_req(conn) do
+    Logger.error("####### AuthHandler#send_signout_req")
+    Logger.error("# AuthHandler#send_signout_req.relay_state = #{get_session(conn, "relay_state")}")
+
+
     %IdpData{id: idp_id} = idp = conn.private[:samly_idp]
     %IdpData{esaml_idp_rec: idp_rec, esaml_sp_rec: sp_rec} = idp
     sp = ensure_sp_uris_set(sp_rec, conn)

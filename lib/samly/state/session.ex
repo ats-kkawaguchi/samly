@@ -39,14 +39,22 @@ defmodule Samly.State.Session do
     end
   end
 
+  require Logger
+
   @impl Samly.State.Store
   def put_assertion(conn, assertion_key, assertion, opts) do
+    Logger.error("####### Session#put_assertion")
+    Logger.error("# Session#put_assertion.relay_state = #{get_session(conn, "relay_state")}")
+
     %{key: key} = opts
     Conn.put_session(conn, key, {assertion_key, assertion})
   end
 
   @impl Samly.State.Store
   def delete_assertion(conn, _assertion_key, opts) do
+    Logger.error("####### Session#delete_assertion")
+    Logger.error("# Session#delete_assertion.relay_state = #{get_session(conn, "relay_state")}")
+
     %{key: key} = opts
     Conn.delete_session(conn, key)
   end

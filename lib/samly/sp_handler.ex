@@ -26,6 +26,11 @@ defmodule Samly.SPHandler do
   end
 
   def consume_signin_response(conn) do
+
+    Logger.error("####### SpHandler#consume_signin_response")
+    Logger.error("# SpHandler#consume_signin_response.relay_state = #{get_session(conn, "relay_state")}")
+
+
     %IdpData{id: idp_id} = idp = conn.private[:samly_idp]
     %IdpData{pre_session_create_pipeline: pipeline, esaml_sp_rec: sp_rec} = idp
     sp = ensure_sp_uris_set(sp_rec, conn)
@@ -127,6 +132,10 @@ defmodule Samly.SPHandler do
   end
 
   def handle_logout_response(conn) do
+    Logger.error("####### SpHandler#handle_logout_response")
+    Logger.error("# SpHandler#handle_logout_response.relay_state = #{get_session(conn, "relay_state")}")
+
+
     %IdpData{id: idp_id} = idp = conn.private[:samly_idp]
     %IdpData{esaml_idp_rec: _idp_rec, esaml_sp_rec: sp_rec} = idp
     sp = ensure_sp_uris_set(sp_rec, conn)
@@ -154,6 +163,10 @@ defmodule Samly.SPHandler do
 
   # non-ui logout request from IDP
   def handle_logout_request(conn) do
+    Logger.error("####### SpHandler#handle_logout_request")
+    Logger.error("# SpHandler#handle_logout_request.relay_state = #{get_session(conn, "relay_state")}")
+
+
     %IdpData{id: idp_id} = idp = conn.private[:samly_idp]
     %IdpData{esaml_idp_rec: idp_rec, esaml_sp_rec: sp_rec} = idp
     sp = ensure_sp_uris_set(sp_rec, conn)
