@@ -79,6 +79,12 @@ defmodule Samly.AuthHandler do
         {idp_signin_url, req_xml_frag} =
           Helper.gen_idp_signin_req(sp, idp_rec, Map.get(idp, :nameid_format))
 
+        Logger.error("#### AuthHandler.send_signin_req")
+        Logger.error("# relay_state = #{relay_state}")
+        Logger.error("# idp_id = #{idp_id}")
+        Logger.error("# target_url = #{target_url}")
+        Logger.error("************")
+
         conn
         |> configure_session(renew: true)
         |> put_session("relay_state", relay_state)
