@@ -96,7 +96,7 @@ defmodule Samly.SPHandler do
     idp_id_in_session = get_session(conn, "idp_id")
     url_in_session = get_session(conn, "target_url")
 
-    Logger.error("#######")
+    Logger.error("####### SpHandler#validate_authresp")
     Logger.error("# relay_state = #{relay_state}")
     Logger.error("# rs_in_session = #{rs_in_session}")
     Logger.error("# idp_id_in_session = #{idp_id_in_session}")
@@ -104,8 +104,8 @@ defmodule Samly.SPHandler do
     Logger.error("************")
 
     cond do
-      # rs_in_session == nil || rs_in_session != relay_state ->
-      #   {:error, :invalid_relay_state}
+      rs_in_session == nil || rs_in_session != relay_state ->
+        {:error, :invalid_relay_state}
 
       idp_id_in_session == nil || idp_id_in_session != idp_id ->
         {:error, :invalid_idp_id}
